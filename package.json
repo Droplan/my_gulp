@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Droplan/WC_gulp_first/issues"
   },
-  "homepage": "https://github.com/Droplan/WC_gulp_first#readme"
+  "homepage": "https://github.com/Droplan/WC_gulp_first#readme",
+  "dependencies": {
+    "gulp": "^4.0.1"
+  }
 }
