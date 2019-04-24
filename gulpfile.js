@@ -1,18 +1,26 @@
 // Подключение пакетов
 const gulp = require('gulp');
+const browserSync = require ('browser-sync').create();
+
+
+// Функции для gulp
+
+function server() {
+	browserSync.init ({
+		server: {
+			baseDir: './src/'
+		}
+	});
+
+	gulp.watch('src/**/*.html').on('change', browserSync.reload);
+	gulp.watch('src/css/**/*.css').on('change', browserSync.reload);
+	gulp.watch('src/js/**/*.js').on('change', browserSync.reload);
+
+}
 
 
 
-// Функции для Gulp
-function task_before() {
-    return console.log('This will be the very first task');
-};
-
-
-function hello() {
-    return console.log('Hello from Gulp!');
-};
 
 // Команды для консоли
 
-gulp.task('hello', gulp.series(task_before, hello));
+gulp.task('default', server);

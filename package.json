@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Droplan/WC_gulp_first#readme",
   "dependencies": {
+    "browser-sync": "^2.26.4",
     "gulp": "^4.0.1"
   }
 }
