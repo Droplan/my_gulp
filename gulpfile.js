@@ -7,21 +7,21 @@ const notify = require ('gulp-notify');
 const autoprefixer = require ('gulp-autoprefixer');
 const scss = require ('gulp-sass');
 const sourcemaps = require ('gulp-sourcemaps');
-
+const pug = require ('gulp-pug');
 
 // Функции для gulp
 
 function server() {
 	browserSync.init ({
 		server: {
-			baseDir: './src/'
+			baseDir: './build/'
 		}
 	});
 
-	gulp.watch('src/**/*.html').on('change', browserSync.reload);
-	gulp.watch('src/less/**/*.less', lesscss);
-	// gulp.watch('src/scss/**/*.scss', sasscss);
-	gulp.watch('src/js/**/*.js').on('change', browserSync.reload);
+	gulp.watch('./src/**/*.html').on('change', browserSync.reload);
+	gulp.watch('./src/less/**/*.less', lesscss);
+	// gulp.watch('./src/scss/**/*.scss', sasscss);
+	gulp.watch('./src/js/**/*.js').on('change', browserSync.reload);
 
 }
 
@@ -42,7 +42,7 @@ function lesscss() {
 			cascade: false
 		}))
 		.pipe(sourcemaps.write( ))
-		.pipe(gulp.dest('src/css'))
+		.pipe(gulp.dest('./src/css'))
 		.pipe(browserSync.stream());
 }
 
@@ -63,13 +63,30 @@ function sasscss() {
 			cascade: false
 		}))
 		.pipe(sourcemaps.write( ))
-		.pipe(gulp.dest('src/css'))
+		.pipe(gulp.dest('./src/css'))
 		.pipe(browserSync.stream())
 }
 
+function pughtml() {
+	return gulp.src('./src/pug/pages/**/*.pug')
+		.pipe(plumber({
+			errorHandler:notify.onError(function(err){
+				return {
+					title: 'Pug',
+					message: err.message
+				}
+			})
+		}))
+		.pipe(pug({
+			pretty: true
+		}))
+		.pipe(gulp.dest('./build'))
+		.pipe(browserSync.stream());
+}
 
 // Команды для консоли
 
 gulp.task('default', gulp.series(lesscss, server));
 
-gulp.task('less', lesscss); 
+gulp.task('less', lesscss);
+gulp.task('pug', pughtml);
