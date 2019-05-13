@@ -1,4 +1,10 @@
 body {
-	font-family: Sans-Serif;
-	background-color: #354564;
+  font-family: Sans-Serif;
+  background-color: #BBDEE3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  float: left;
 }
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1haW4ubGVzcyIsIm1haW4uY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdBO0VBQ0MsdUJBQUE7RUFDQSx5QkFBQTtFQUNBLG9CQUFBO0VBQUEsb0JBQUE7RUFBQSxhQUFBO0VBQ0EsV0FBQTtBQ0ZEIiwiZmlsZSI6Im1haW4uY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGNvbG9yOiAjQkJERUUzO1xyXG5cclxuXHJcbmJvZHkge1xyXG5cdGZvbnQtZmFtaWx5OiBTYW5zLVNlcmlmO1xyXG5cdGJhY2tncm91bmQtY29sb3I6IEBjb2xvcjtcclxuXHRkaXNwbGF5OiBmbGV4O1xyXG5cdGZsb2F0OiBsZWZ0O1xyXG59IiwiYm9keSB7XG4gIGZvbnQtZmFtaWx5OiBTYW5zLVNlcmlmO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjQkJERUUzO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogbGVmdDtcbn1cbiJdfQ== */
