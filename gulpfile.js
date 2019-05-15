@@ -1,13 +1,14 @@
 // Подключение пакетов
 const gulp = require('gulp');
-const browserSync = require ('browser-sync').create();
-const less = require ('gulp-less');
-const plumber = require ('gulp-plumber');
-const notify = require ('gulp-notify');
-const autoprefixer = require ('gulp-autoprefixer');
-const scss = require ('gulp-sass');
-const sourcemaps = require ('gulp-sourcemaps');
-const pug = require ('gulp-pug');
+const browserSync = require('browser-sync').create();
+const less = require('gulp-less');
+const plumber = require('gulp-plumber');
+const notify = require('gulp-notify');
+const autoprefixer = require('gulp-autoprefixer');
+const scss = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
+const pug = require('gulp-pug');
+const del = require('del');
 
 // Функции для gulp
 
@@ -18,11 +19,16 @@ function server() {
 		}
 	});
 
-	gulp.watch('./src/**/*.html').on('change', browserSync.reload);
+	gulp.watch('./src/pug/**/*.*', pughtml);
 	gulp.watch('./src/less/**/*.less', lesscss);
 	// gulp.watch('./src/scss/**/*.scss', sasscss);
-	gulp.watch('./src/js/**/*.js').on('change', browserSync.reload);
+	gulp.watch('./src/js/**/*.js', copy_js);
+	gulp.watch('./src/libs/**/*.*', copy_libs);
+	gulp.watch('./src/img/**/*.*', copy_img);
+}
 
+function cleanbuild() {
+	return del('./build');
 }
 
 function lesscss() {
@@ -42,7 +48,7 @@ function lesscss() {
 			cascade: false
 		}))
 		.pipe(sourcemaps.write( ))
-		.pipe(gulp.dest('./src/css'))
+		.pipe(gulp.dest('./build/css'))
 		.pipe(browserSync.stream());
 }
 
@@ -63,7 +69,7 @@ function sasscss() {
 			cascade: false
 		}))
 		.pipe(sourcemaps.write( ))
-		.pipe(gulp.dest('./src/css'))
+		.pipe(gulp.dest('./build/css'))
 		.pipe(browserSync.stream())
 }
 
@@ -84,9 +90,24 @@ function pughtml() {
 		.pipe(browserSync.stream());
 }
 
+function copy_js() {
+	return gulp.src('./src/js/**/*.*')
+		.pipe(gulp.dest('./build/js'))
+		.pipe(browserSync.stream());
+}
+
+function copy_libs() {
+	return gulp.src('./src/libs/**/*.*')
+		.pipe(gulp.dest('./build/libs'))
+		.pipe(browserSync.stream());
+}
+
+function copy_img() {
+	return gulp.src('./src/img/**/*.*')
+		.pipe(gulp.dest('./build/img'))
+		.pipe(browserSync.stream());
+}
+
 // Команды для консоли
 
-gulp.task('default', gulp.series(lesscss, server));
-
-gulp.task('less', lesscss);
-gulp.task('pug', pughtml);
+gulp.task('default', gulp.series(cleanbuild, lesscss, pughtml, copy_js, copy_libs, copy_img, server));
