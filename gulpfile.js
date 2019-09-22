@@ -10,6 +10,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const pug = require('gulp-pug');
 const del = require('del');
 
+const cleanCSS = require('gulp-clean-css');
+
 // Функции для gulp
 
 function server() {
@@ -32,7 +34,7 @@ function cleanbuild() {
 }
 
 function lesscss() {
-	return gulp.src('./src/less/main.less')
+	return gulp.src('./src/style/main.less')
 		.pipe(plumber({
 			errorHandler: notify.onError(function(err){
 				return {
@@ -41,19 +43,22 @@ function lesscss() {
 				}
 			})
 		}))
-		.pipe(sourcemaps.init())
-		.pipe(less())
+		.pipe(sourcemaps.init()) // Создаёт карту источников CSS
+		.pipe(less()) // Выполняет преобразование less в CSS
 		.pipe(autoprefixer({
-			browsers: ['last 3 versions'],
+			browsers: ['>0.1%'],
 			cascade: false
-		}))
-		.pipe(sourcemaps.write( ))
-		.pipe(gulp.dest('./build/css'))
+		})) // Расставляет автопрефиксы для браузеров которые используются больше 0,01% людей
+		.pipe(cleanCSS({
+		level: 2
+		})) // Оптимизирует и минифицирует CSS
+		.pipe(sourcemaps.write( )) // Добавляет карту источников CSS
+		.pipe(gulp.dest('./build/css')) // Сохраняет файл в указанную директорию
 		.pipe(browserSync.stream());
 }
 
 function sasscss() {
-	return gulp.src('./src/scss/main.scss')
+	return gulp.src('./src/style/main.scss')
 		.pipe(plumber({
 			errorHandler: notify.onError(function(err){
 				return {
@@ -73,8 +78,10 @@ function sasscss() {
 		.pipe(browserSync.stream())
 }
 
+
+
 function pughtml() {
-	return gulp.src('./src/pug/pages/**/*.pug')
+	return gulp.src('./src/html/pages/**/*.pug')
 		.pipe(plumber({
 			errorHandler:notify.onError(function(err){
 				return {

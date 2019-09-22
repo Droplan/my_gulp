@@ -1,2 +1,2 @@
-# WC_gulp_first
-My first project build system (gulp 4)
+# my_gulp
+My project build system (gulp 4)
