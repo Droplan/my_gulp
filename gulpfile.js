@@ -11,6 +11,7 @@ const pug = require('gulp-pug');
 const del = require('del');
 
 const cleanCSS = require('gulp-clean-css');
+const uglify = require('gulp-uglify');
 
 // Функции для gulp
 
@@ -21,10 +22,10 @@ function server() {
 		}
 	});
 
-	gulp.watch('./src/pug/**/*.*', pughtml);
-	gulp.watch('./src/less/**/*.less', lesscss);
-	// gulp.watch('./src/scss/**/*.scss', sasscss);
-	gulp.watch('./src/js/**/*.js', copy_js);
+	gulp.watch('./src/pug/**/*.*', htmlpug);
+	gulp.watch('./src/less/**/*.less', stylesless);
+	gulp.watch('./src/scss/**/*.scss', stylessass);
+	gulp.watch('./src/js/**/*.js', scripts);
 	gulp.watch('./src/libs/**/*.*', copy_libs);
 	gulp.watch('./src/img/**/*.*', copy_img);
 }
@@ -33,8 +34,8 @@ function cleanbuild() {
 	return del('./build');
 }
 
-function lesscss() {
-	return gulp.src('./src/style/main.less')
+function stylesless() {
+	return gulp.src('./src/style/*.less')
 		.pipe(plumber({
 			errorHandler: notify.onError(function(err){
 				return {
@@ -57,8 +58,8 @@ function lesscss() {
 		.pipe(browserSync.stream());
 }
 
-function sasscss() {
-	return gulp.src('./src/style/main.scss')
+function stylessass() {
+	return gulp.src('./src/style/*.scss')
 		.pipe(plumber({
 			errorHandler: notify.onError(function(err){
 				return {
@@ -80,7 +81,7 @@ function sasscss() {
 
 
 
-function pughtml() {
+function htmlpug() {
 	return gulp.src('./src/html/pages/**/*.pug')
 		.pipe(plumber({
 			errorHandler:notify.onError(function(err){
@@ -97,8 +98,11 @@ function pughtml() {
 		.pipe(browserSync.stream());
 }
 
-function copy_js() {
+function scripts() {
 	return gulp.src('./src/js/**/*.*')
+		.pipe(uglify({
+			toplevel: true
+		})) // Оптимизирует и минифицирует CSS
 		.pipe(gulp.dest('./build/js'))
 		.pipe(browserSync.stream());
 }
@@ -117,4 +121,4 @@ function copy_img() {
 
 // Команды для консоли
 
-gulp.task('default', gulp.series(cleanbuild, lesscss, pughtml, copy_js, copy_libs, copy_img, server));
+gulp.task('default', gulp.series(cleanbuild, stylesless, stylessass, htmlpug, scripts, copy_libs, copy_img, server));

@@ -1,1 +1,1 @@
-const X = 1
+console.log(5*56);
