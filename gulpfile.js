@@ -12,6 +12,7 @@ const del = require('del');
 
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
+const rigger = require('gulp-rigger');
 
 // Функции для gulp
 
@@ -22,7 +23,8 @@ function server() {
 		}
 	});
 
-	gulp.watch('./src/pug/**/*.*', htmlpug);
+	gulp.watch('./src/html/**/*.pug', htmlpug);
+	gulp.watch('./src/html/**/*.html', html);
 	gulp.watch('./src/less/**/*.less', stylesless);
 	gulp.watch('./src/scss/**/*.scss', stylessass);
 	gulp.watch('./src/js/**/*.js', scripts);
@@ -119,6 +121,13 @@ function copy_img() {
 		.pipe(browserSync.stream());
 }
 
+function html() {
+	return gulp.src('./src/html/pages/**/*.html')
+		.pipe(rigger()) // Вставляет в файл содержимое других файлов
+		.pipe(gulp.dest('./build'))
+		.pipe(browserSync.stream());
+}
+
 // Команды для консоли
 
-gulp.task('default', gulp.series(cleanbuild, stylesless, stylessass, htmlpug, scripts, copy_libs, copy_img, server));
+gulp.task('default', gulp.series(cleanbuild, stylesless, stylessass, htmlpug, html, scripts, copy_libs, copy_img, server));
