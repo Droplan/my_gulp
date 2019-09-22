@@ -13,6 +13,8 @@ const del = require('del');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const rigger = require('gulp-rigger');
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant');
 
 // Функции для gulp
 
@@ -29,7 +31,8 @@ function server() {
 	gulp.watch('./src/scss/**/*.scss', stylessass);
 	gulp.watch('./src/js/**/*.js', scripts);
 	gulp.watch('./src/libs/**/*.*', copy_libs);
-	gulp.watch('./src/img/**/*.*', copy_img);
+	gulp.watch('./src/fonts/**/*.*', copy_fonts);
+	gulp.watch('./src/img/**/*.*', img);
 }
 
 function cleanbuild() {
@@ -81,7 +84,12 @@ function stylessass() {
 		.pipe(browserSync.stream())
 }
 
-
+function html() {
+	return gulp.src('./src/html/pages/**/*.html')
+		.pipe(rigger()) // Вставляет в файл содержимое других файлов
+		.pipe(gulp.dest('./build'))
+		.pipe(browserSync.stream());
+}
 
 function htmlpug() {
 	return gulp.src('./src/html/pages/**/*.pug')
@@ -115,19 +123,26 @@ function copy_libs() {
 		.pipe(browserSync.stream());
 }
 
-function copy_img() {
+function img() {
 	return gulp.src('./src/img/**/*.*')
+		.pipe(imagemin({
+				progressive: true,
+				svgoPlugins: [{removeViewBox: false}],
+				use: [pngquant()],
+				interlaced: true
+		})) //Сжимаем картинки
+
 		.pipe(gulp.dest('./build/img'))
 		.pipe(browserSync.stream());
 }
 
-function html() {
-	return gulp.src('./src/html/pages/**/*.html')
-		.pipe(rigger()) // Вставляет в файл содержимое других файлов
-		.pipe(gulp.dest('./build'))
+function copy_fonts() {
+	return gulp.src('./src/fonts/**/*.*')
+		.pipe(gulp.dest('./build/fonts'))
 		.pipe(browserSync.stream());
 }
 
+
 // Команды для консоли
 
-gulp.task('default', gulp.series(cleanbuild, stylesless, stylessass, htmlpug, html, scripts, copy_libs, copy_img, server));
+gulp.task('default', gulp.series(cleanbuild, stylesless, stylessass, htmlpug, html, scripts, copy_libs, copy_fonts, img, server));
