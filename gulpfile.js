@@ -27,8 +27,8 @@ function server() {
 
 	gulp.watch('./src/html/**/*.pug', htmlpug);
 	gulp.watch('./src/html/**/*.html', html);
-	gulp.watch('./src/less/**/*.less', stylesless);
-	gulp.watch('./src/scss/**/*.scss', stylessass);
+	gulp.watch('./src/style/**/*.less', stylesless);
+	gulp.watch('./src/style/**/*.scss', stylessass);
 	gulp.watch('./src/js/**/*.js', scripts);
 	gulp.watch('./src/libs/**/*.*', copy_libs);
 	gulp.watch('./src/fonts/**/*.*', copy_fonts);
