@@ -146,3 +146,4 @@ function copy_fonts() {
 // Команды для консоли
 
 gulp.task('default', gulp.series(cleanbuild, stylesless, stylessass, htmlpug, html, scripts, copy_libs, copy_fonts, img, server));
+gulp.task('del', gulp.series(cleanbuild));
