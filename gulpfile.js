@@ -76,9 +76,12 @@ function stylessass() {
 		.pipe(sourcemaps.init())
 		.pipe(scss())
 		.pipe(autoprefixer({
-			browsers: ['last 3 versions'],
+			browsers: ['>0.1%'],
 			cascade: false
 		}))
+		.pipe(cleanCSS({
+			level: 2
+			}))
 		.pipe(sourcemaps.write( ))
 		.pipe(gulp.dest('./build/css'))
 		.pipe(browserSync.stream())
@@ -109,7 +112,7 @@ function htmlpug() {
 }
 
 function scripts() {
-	return gulp.src('./src/js/**/*.*')
+	return gulp.src('./src/js/*.*')
 		.pipe(uglify({
 			toplevel: true
 		})) // Оптимизирует и минифицирует CSS
