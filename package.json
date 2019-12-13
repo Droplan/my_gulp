@@ -31,7 +31,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "imagemin-pngquant": "^8.0.0",
-    "npm": "^6.11.3",
+    "npm": "^6.13.4",
     "updates": "^9.0.0"
   },
   "devDependencies": {
