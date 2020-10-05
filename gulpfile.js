@@ -16,6 +16,7 @@ const rigger = require('gulp-rigger');
 const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
 
+
 // Функции для gulp
 
 function server() {
@@ -115,7 +116,7 @@ function scripts() {
 	return gulp.src('./src/js/*.*')
 		.pipe(uglify({
 			toplevel: true
-		})) // Оптимизирует и минифицирует CSS
+		})) // Оптимизирует и минифицирует JS
 		.pipe(gulp.dest('./build/js'))
 		.pipe(browserSync.stream());
 }
