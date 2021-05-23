@@ -114,6 +114,14 @@ function htmlpug() {
 
 function scripts() {
 	return gulp.src('./src/js/*.*')
+		.pipe(plumber({
+			errorHandler: notify.onError(function(err){
+				return {
+					title: 'Styles',
+					meassage: err.message
+				}
+			})
+		}))
 		.pipe(uglify({
 			toplevel: true
 		})) // Оптимизирует и минифицирует JS
