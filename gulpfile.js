@@ -1,11 +1,11 @@
 // Подключение пакетов
 const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
-const less = require('gulp-less');
+const less = require('gulp-less'); //оставить, нет в стилях
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const autoprefixer = require('gulp-autoprefixer');
-const scss = require('gulp-sass');
+const scss = require('gulp-sass'); //оставить, нет в стилях
 const sourcemaps = require('gulp-sourcemaps');
 const pug = require('gulp-pug');
 const del = require('del');
@@ -34,10 +34,6 @@ function server() {
 	gulp.watch('./src/libs/**/*.*', copy_libs);
 	gulp.watch('./src/fonts/**/*.*', copy_fonts);
 	gulp.watch('./src/img/**/*.*', img);
-}
-
-function cleanbuild() {
-	return del('./build');
 }
 
 function html() {
