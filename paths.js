@@ -13,8 +13,10 @@ export default {
 		htmlpug: './src/html/pages/**/*.pug',
 		html: './src/html/pages/**/*.html',
 		js: './src/js/*.*',
-		styleless: './src/style/*.less',
-    stylescss: './src/style/*.scss',
+		style: {
+			less: './src/style/*.less',
+      scss: './src/style/*.scss',
+		},
 		img: './src/img/**/*.*',
 		fonts: './src/fonts/**/*.*',
 		libs: './src/libs/**/*.*',
@@ -26,7 +28,7 @@ export default {
 			less: './src/style/**/*.less',
 			scss: './src/style/**/*.scss',
 			sass: './src/style/**/*.sass',
-		}
+		},
 		js: './src/js/**/*.js',
 		img: './src/img/**/*.*',
 		fonts: './src/fonts/**/*.*',
