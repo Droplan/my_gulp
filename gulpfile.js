@@ -36,29 +36,7 @@ function server() {
 	gulp.watch('./src/img/**/*.*', img);
 }
 
-function html() {
-	return gulp.src('./src/html/pages/**/*.html')
-		.pipe(rigger()) // Вставляет в файл содержимое других файлов
-		.pipe(gulp.dest('./build'))
-		.pipe(browserSync.stream());
-}
 
-function htmlpug() {
-	return gulp.src('./src/html/pages/**/*.pug')
-		.pipe(plumber({
-			errorHandler:notify.onError(function(err){
-				return {
-					title: 'Pug',
-					message: err.message
-				}
-			})
-		}))
-		.pipe(pug({
-			pretty: true
-		}))
-		.pipe(gulp.dest('./build'))
-		.pipe(browserSync.stream());
-}
 
 function scripts() {
 	return gulp.src('./src/js/*.*')

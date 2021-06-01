@@ -1,7 +1,6 @@
 export default {
 	build: {
 		html: './build',
-		htmlpug: './build',
 		js: './build/js',
 		css: './build/css',
 		img: './build/img',
@@ -10,8 +9,10 @@ export default {
 	},
 	src: {
 		templates: './src',
-		htmlpug: './src/html/pages/**/*.pug',
-		html: './src/html/pages/**/*.html',
+		html: {
+			html: './src/html/pages/**/*.html',
+			pug: './src/html/pages/**/*.pug',
+		},
 		js: './src/js/*.*',
 		style: {
 			less: './src/style/*.less',
@@ -22,8 +23,10 @@ export default {
 		libs: './src/libs/**/*.*',
 	},
 	watch: {
-		htmlpug: './src/html/**/*.pug',
-    html: './src/html/**/*.html',
+    html: {
+			html: './src/html/**/*.html',
+			pug: './src/html/**/*.pug',
+		},
     style: {
 			less: './src/style/**/*.less',
 			scss: './src/style/**/*.scss',
