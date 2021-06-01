@@ -5,10 +5,8 @@ export default {
 		css: './build/css',
 		img: './build/img',
 		fonts: './build/fonts',
-		libs: './build/libs'
 	},
 	src: {
-		templates: './src',
 		html: {
 			html: './src/html/pages/**/*.html',
 			pug: './src/html/pages/**/*.pug',
@@ -20,7 +18,6 @@ export default {
 		},
 		img: './src/img/**/*.*',
 		fonts: './src/fonts/**/*.*',
-		libs: './src/libs/**/*.*',
 	},
 	watch: {
     html: {
@@ -35,7 +32,6 @@ export default {
 		js: './src/js/**/*.js',
 		img: './src/img/**/*.*',
 		fonts: './src/fonts/**/*.*',
-		libs: './src/libs/**/*.*'
 	},
-	clean: './build'
+	clean: {'./build'
 };

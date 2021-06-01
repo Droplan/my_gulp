@@ -5,10 +5,9 @@ const rigger = require('gulp-rigger');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 
-import path from '../paths.js';
 
 function html(input, output) {
-	return gulp.src(path[input])
+	return gulp.src(input)
     .pipe(plumber({
 			errorHandler:notify.onError(function(err){
 				return {
@@ -21,6 +20,6 @@ function html(input, output) {
     .pipe(pug({
 			pretty: true
 		}))
-		.pipe(gulp.dest(path[output]))
+		.pipe(gulp.dest(output))
 		.pipe(browserSync.stream());
 }

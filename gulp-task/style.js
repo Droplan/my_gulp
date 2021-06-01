@@ -7,10 +7,9 @@ const autoprefixer = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
 const cleanCSS = require('gulp-clean-css');
 
-import path from '../paths.js';
 
 function style(input, output, preprocessor) {
-	return gulp.src(path[input]) // Берёт файлы из указанной директории
+	return gulp.src(input) // Берёт файлы из указанной директории
 		.pipe(plumber({
 			errorHandler: notify.onError(function(err){
 				return {
@@ -29,6 +28,6 @@ function style(input, output, preprocessor) {
 		level: 2
 		})) // Оптимизирует и минифицирует CSS
 		.pipe(sourcemaps.write( )) // Добавляет карту источников CSS
-		.pipe(gulp.dest(path[output])) // Сохраняет файл в указанную директорию
+		.pipe(gulp.dest(output)) // Сохраняет файл в указанную директорию
 		.pipe(browserSync.stream()); // Обновляет открытую страницу
 }

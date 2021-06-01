@@ -55,30 +55,6 @@ function scripts() {
 		.pipe(browserSync.stream());
 }
 
-function copy_libs() {
-	return gulp.src('./src/libs/**/*.*')
-		.pipe(gulp.dest('./build/libs'))
-		.pipe(browserSync.stream());
-}
-
-function img() {
-	return gulp.src('./src/img/**/*.*')
-		.pipe(imagemin({
-				progressive: true,
-				svgoPlugins: [{removeViewBox: false}],
-				use: [pngquant()],
-				interlaced: true
-		})) //Сжимаем картинки
-
-		.pipe(gulp.dest('./build/img'))
-		.pipe(browserSync.stream());
-}
-
-function copy_fonts() {
-	return gulp.src('./src/fonts/**/*.*')
-		.pipe(gulp.dest('./build/fonts'))
-		.pipe(browserSync.stream());
-}
 
 
 // Команды для консоли
