@@ -33,5 +33,6 @@ export default {
 		img: './src/img/**/*.*',
 		fonts: './src/fonts/**/*.*',
 	},
-	clean: {'./build'
+	clean: {
+		build: './build',
 };
