@@ -1,44 +1,19 @@
 // Подключение пакетов
-const gulp = require('gulp');
-const browserSync = require('browser-sync').create();
-const less = require('gulp-less'); //оставить, нет в стилях
-const plumber = require('gulp-plumber');
-const notify = require('gulp-notify');
-const autoprefixer = require('gulp-autoprefixer');
-const scss = require('gulp-sass'); //оставить, нет в стилях
-const sourcemaps = require('gulp-sourcemaps');
-const pug = require('gulp-pug');
-const del = require('del');
+const { parallel, series } = require("gulp");
 
-const cleanCSS = require('gulp-clean-css');
-const uglify = require('gulp-uglify');
-const rigger = require('gulp-rigger');
-const imagemin = require('gulp-imagemin');
-const pngquant = require('imagemin-pngquant');
-
-
-// Функции для gulp
-
-function server() {
-	browserSync.init ({
-		server: {
-			baseDir: './build/'
-		}
-	});
-
-	gulp.watch('./src/html/**/*.pug', htmlpug);
-	gulp.watch('./src/html/**/*.html', html);
-	gulp.watch('./src/style/**/*.less', stylesless);
-	gulp.watch('./src/style/**/*.scss', stylessass);
-	gulp.watch('./src/js/**/*.js', scripts);
-	gulp.watch('./src/libs/**/*.*', copy_libs);
-	gulp.watch('./src/fonts/**/*.*', copy_fonts);
-	gulp.watch('./src/img/**/*.*', img);
-}
-
-
+const { html, htmlPug } = require("./gulp-task/html.js");
+const { styleLess, styleSass } = require("./gulp-task/style.js");
+const { js } = require("./gulp-task/script.js");
+const { copyFonts } = require("./gulp-task/copy.js");
+const { cleanBuild } = require("./gulp-task/clean.js");
+const { server } = require("./gulp-task/watch.js");
 
 // Команды для консоли
 
-gulp.task('default', gulp.series(cleanbuild, stylesless, stylessass, htmlpug, html, scripts, copy_libs, copy_fonts, img, server));
-gulp.task('del', gulp.series(cleanbuild));
+module.exports.default = series(
+  cleanBuild,
+  parallel(htmlPug, html, styleLess, styleSass, js, copyFonts),
+  server
+);
+
+module.exports.del = cleanBuild;
