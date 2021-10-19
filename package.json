@@ -18,18 +18,19 @@
     "gulp-autoprefixer": "^6.1.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-less": "^5.0.0",
-    "gulp-notify": "^4.0.0",
     "gulp-plumber": "^1.2.1",
     "gulp-pug": "^5.0.0",
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
+    "gulp-w3c-html-validator": "^5.1.0",
     "sass": "^1.43.2"
   },
   "dependencies": {
     "browser-sync": "^2.27.5",
     "check": "^1.0.0",
     "g": "^2.0.1",
+    "gulp-pug-linter": "^1.5.0",
     "npm": "^8.1.0",
     "updates": "^12.2.2"
   }
