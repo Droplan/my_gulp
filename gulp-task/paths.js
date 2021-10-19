@@ -13,8 +13,8 @@ module.exports.paths = {
     },
     js: "./src/js/*.*",
     style: {
-      less: "./src/style/*.less",
-      scss: "./src/style/*.scss",
+      less: "./src/styles/*.less",
+      scss: "./src/styles/*.scss",
     },
     img: "./src/img/**/*.*",
     fonts: "./src/fonts/**/*.*",
@@ -26,9 +26,9 @@ module.exports.paths = {
       pug: "./src/html/**/*.pug",
     },
     style: {
-      less: "./src/style/**/*.less",
-      scss: "./src/style/**/*.scss",
-      sass: "./src/style/**/*.sass",
+      less: "./src/styles/**/*.less",
+      scss: "./src/styles/**/*.scss",
+      sass: "./src/styles/**/*.sass",
     },
     js: "./src/js/**/*.js",
     img: "./src/img/**/*.*",
