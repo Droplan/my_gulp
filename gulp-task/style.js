@@ -1,6 +1,5 @@
 // Подключение пакетов
 const { src, dest } = require("gulp");
-const browserSync = require("browser-sync").create();
 const plumber = require("gulp-plumber");
 const autoprefixer = require("gulp-autoprefixer");
 const sourcemaps = require("gulp-sourcemaps");
