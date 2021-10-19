@@ -16,12 +16,12 @@ module.exports.server = function () {
     },
   });
 
-  watch(paths.watch.html.pug, htmlPug);
-  watch(paths.watch.html.html, html);
-  watch(paths.watch.style.less, styleLess);
-  watch(paths.watch.style.sass, styleSass);
-  watch(paths.watch.style.scss, styleSass);
-  watch(paths.watch.js, js);
-  watch(paths.watch.fonts, copyFonts);
+  watch(paths.watch.html.pug, htmlPug).on("change", browserSync.reload);
+  watch(paths.watch.html.html, html).on("change", browserSync.reload);
+  watch(paths.watch.style.less, styleLess).on("change", browserSync.reload);
+  watch(paths.watch.style.sass, styleSass).on("change", browserSync.reload);
+  watch(paths.watch.style.scss, styleSass).on("change", browserSync.reload);
+  watch(paths.watch.js, js).on("change", browserSync.reload);
+  watch(paths.watch.fonts, copyFonts).on("change", browserSync.reload);
   // watch(paths.watch.img, img);
 };
