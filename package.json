@@ -23,6 +23,7 @@
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
+    "gulp-imagemin": "^7.1.0",
     "gulp-less": "^5.0.0",
     "gulp-plumber": "^1.2.1",
     "gulp-pug": "^5.0.0",

@@ -1,29 +1,26 @@
-// const gulp = require("gulp");
-// const browserSync = require("browser-sync").create();
-// const { imagemin } = require("gulp-imagemin");
+const { src, dest } = require("gulp");
+const imagemin = require("gulp-imagemin");
+const plumber = require("gulp-plumber");
+const { paths } = require("./paths");
 
-// const { paths } = require("./paths");
+function imgHandler(input, output) {
+  return src(input)
+    .pipe(plumber())
+    .pipe(
+      imagemin([
+        imagemin.gifsicle({ interlaced: true }),
+        imagemin.mozjpeg({ quality: 75, progressive: true }),
+        imagemin.optipng({ optimizationLevel: 5 }),
+        imagemin.svgo({
+          plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
+        }),
+      ])
+    ) //Сжимаем картинки
+    .pipe(dest(output));
+}
 
-// function imgHandler(input, output) {
-//   return gulp
-//     .src(input)
-//     .pipe(
-//       imagemin([
-//         imagemin.gifsicle({ interlaced: true }),
-//         imagemin.mozjpeg({ quality: 75, progressive: true }),
-//         imagemin.optipng({ optimizationLevel: 5 }),
-//         imagemin.svgo({
-//           plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
-//         }),
-//       ])
-//     ) //Сжимаем картинки
+// Функции для тасков
 
-//     .pipe(gulp.dest(output))
-//     .pipe(browserSync.stream());
-// }
-
-// // Функции для тасков
-
-// module.exports = function img() {
-//   return imgHandler(paths.src.img, paths.build.img);
-// };
+module.exports.img = function () {
+  return imgHandler(paths.src.img, paths.build.img);
+};
