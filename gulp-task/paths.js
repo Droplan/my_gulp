@@ -5,6 +5,7 @@ module.exports.paths = {
     css: "./build/css",
     img: "./build/img",
     fonts: "./build/fonts",
+    libs: "./build/libs",
   },
   src: {
     html: {
