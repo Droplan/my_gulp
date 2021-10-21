@@ -7,6 +7,18 @@ function copy(input, output) {
 
 // Функции для тасков
 
+const fonts = ["./src/fonts/**/*.*"];
+
 module.exports.copyFonts = function () {
-  return copy(paths.src.fonts, paths.build.fonts);
+  return copy(fonts, paths.build.fonts);
+};
+
+const libs = [
+  "./node_modules/normalize.css/normalize.css",
+  // "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+  // "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+];
+
+module.exports.copyLibs = function () {
+  return copy(libs, paths.build.libs);
 };
