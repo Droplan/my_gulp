@@ -1,11 +1,8 @@
-//fonts
-@import "common/font.less";
-
 //variables
-@import "helpers/variables.less";
+@import "helpers/variables.scss";
 
 //mixins
-@import "helpers/mixins.less";
+@import "helpers/mixins.scss";
 
 //normalize
 // @import "../../node_modules/normalize.css/normalize.css";
@@ -13,11 +10,14 @@
 //bootstrap 5
 // @import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
+//fonts
+@import "common/font.scss";
+
 //generally settings
-@import "common/typography.less";
+@import "common/typography.scss";
 
 //grid
-@import "common/grid.less";
+@import "common/grid.scss";
 
 //components
 
